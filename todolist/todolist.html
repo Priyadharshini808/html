@@ -1,0 +1,72 @@
+todo
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .todo-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .todo-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .task-checkbox {
+            margin-right: 10px;
+        }
+        .task-text {
+            flex-grow: 1;
+        }
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="todo-container">
+        <h1>AP Todo List</h1>
+        <input type="text" id="task" placeholder="Add a new task">
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById('task');
+            var taskText = taskInput.value.trim();
+
+            if (taskText) {
+                var taskList = document.getElementById('taskList');
+                var taskItem = document.createElement('li');
+                var taskCheckbox = document.createElement('input');
+                taskCheckbox.type = 'checkbox';
+                var taskLabel = document.createElement('label');
+                taskLabel.textContent = taskText;
+                var deleteButton = document.createElement('button');
+                deleteButton.className = 'delete-button';
+                deleteButton.textContent = 'Delete';
+                deleteButton.addEventListener('click', function() {
+                    taskItem.remove();
+                });
+
+                taskItem.appendChild(taskCheckbox);
+                taskItem.appendChild(taskLabel);
+                taskItem.appendChild(deleteButton);
+                taskList.appendChild(taskItem);
+
+                taskInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
